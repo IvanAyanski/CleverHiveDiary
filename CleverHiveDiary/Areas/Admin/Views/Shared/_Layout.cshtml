@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CleverHiveDiary</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CleverHiveDiary.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-warning border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                @if (User?.Identity?.IsAuthenticated ?? false)
+                {
+                    @if (User.IsInRole("Admin"))
+                    {
+                                <a class="navbar-brand" asp-area="Admin" asp-controller="Admin" asp-action="Admin">Дневникът на умния кошер</a>
+                    }
+                    else
+                    {
+                            <a class="navbar-brand" asp-area="" asp-controller="Farm" asp-action="Current">Дневникът на умния кошер</a>
+                            <a class="navbar-brand" asp-area="" asp-controller="Note" asp-action="All"><img src="https://images.emojiterra.com/twitter/v13.1/512px/1f5d2.png" style="width:10%;height:10%;" alt="Notes"></img></a>
+                    }
+                }
+                else
+                {
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Дневникът на умния кошер</a>
+                }
+               
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; @DateTime.UtcNow.Year - Дневникът на умния кошер <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f41d.png" style="width:5%;height:5%;" ></img> 
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

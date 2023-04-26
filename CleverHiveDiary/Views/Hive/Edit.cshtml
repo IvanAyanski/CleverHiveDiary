@@ -1,0 +1,62 @@
+﻿@using CleverHiveDiary.Core.ViewModels.Hive
+@model EditHiveViewModel
+
+@{
+    ViewBag.Title = "Промяна на кошер";
+}
+
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <input type="hidden" asp-for="@Model.Id" />
+            <div class="form-group">
+                <label asp-for="Name">Име</label>
+                <input asp-for="Name" class="form-control" placeholder="Име...">
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Production">Продукция</label>
+                <input asp-for="Production" class="form-control" placeholder="Продукция...">
+                <span asp-validation-for="Production" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Floors">Етажи</label>
+                <input asp-for="Floors" class="form-control" placeholder="Етажи...">
+                <span asp-validation-for="Floors" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Discription">Описание</label>
+                <input asp-for="Discription" class="form-control" placeholder="Описание...">
+                <span asp-validation-for="Discription" class="small text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId">Статус</label>
+                <select asp-for="StatusId" class="form-control">
+                    @foreach (var status in Model.statusHives)
+                    {
+                        <option value="@status.Id">@status.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="StatusId" class="small text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <input class="btn btn-primary bg-success mt-3" type="submit" value="Запази" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+   
+   
+

@@ -1,0 +1,49 @@
+﻿@using CleverHiveDiary.Core.ViewModels.Hive;
+@model ICollection<HiveViewModel>
+
+@{
+    ViewBag.Title = "Кошери";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+@if (Model.Count() == 0)
+{
+    <h3 class="text-center">Няма кошери!</h3>
+}
+else
+{
+    @foreach (var hive in Model)
+    {
+        <div class="text-center row">
+
+            <div class="card col-4" style="width: 20rem; ">
+                <img class="card-img-top" style="width: 18rem;"
+                     src="https://beefarm.ru/blog/images/posts/2015/02/flow-hive/flow-hive-front.jpg" alt="Hive Image">
+                <div class="card-body">
+
+                    <h5 class="card-title mt-1">@hive.Name</h5>
+                    <p class="mb-0">Прукция: @hive.Production kg/season</p>
+                    <p class="mb-0">Етажи: @hive.Floors </p>
+                    <p>Статус: @hive.Status</p>
+                </div>
+
+                <form asp-action="Detail" asp-route-hiveId="@hive.Id">
+                    <button type="submit" class="btn btn-danger bg-info">Информация</button>
+                </form>
+                <a asp-area="" asp-controller="Hive" asp-action="Edit" asp-route-hiveId="@hive.Id"
+                   class="btn btn-warning">Промени</a>
+                <form asp-action="Delete" asp-route-hiveId="@hive.Id">
+                    <button type="submit" class="btn btn-danger">Премахни</button>
+                </form>
+
+            </div>
+
+        </div>
+    }
+}
+<a asp-area="" asp-controller="Note" asp-action="Add"
+   class="btn btn-info">Добави кошер</a>
+
+<a asp-area="" asp-controller="Farm" asp-action="Current"
+   class="btn btn-succes">Обратно към фермата</a>

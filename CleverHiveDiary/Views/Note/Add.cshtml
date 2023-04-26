@@ -1,0 +1,35 @@
+﻿@using CleverHiveDiary.Core.ViewModels.Note
+@model AddNoteViewModel
+
+@{
+    ViewBag.Title = "Добави Бележка";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12 offset-lg-2 col-lg-8 offset-xl-3 col-xl-6">
+        <form method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.Title" class="form-label">Име</label>
+                <input asp-for="@Model.Title" class="form-control" aria-required="true" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Text" class="form-label">Съдържание</label>
+                <input asp-for="@Model.Text" class="form-control" aria-required="true" />
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3"  asp-controller="Note" asp-action="Add" method="post">
+                <input class="btn btn-primary" type="submit" value="Добави" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

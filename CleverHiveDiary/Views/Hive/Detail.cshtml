@@ -1,0 +1,23 @@
+﻿@using CleverHiveDiary.Core.ViewModels.Hive;
+
+@model HiveViewModel
+
+@{
+    ViewBag.Title = "Детайли на кошер";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<div class="text-center row">
+    <div>
+        <img src="https://beefarm.ru/blog/images/posts/2015/02/flow-hive/flow-hive-front.jpg" alt="Hive Image">
+        <div>
+
+            <h5>Име:@Model.Name</h5>
+            <p>Етажи: @Model.Floors</p>
+            <p>Продукция: @Model.Production</p>
+            <p>Описание: @Model.Discription</p>
+            <p>Статус: @Model.Status</p>
+        </div>
+    </div>
+</div>

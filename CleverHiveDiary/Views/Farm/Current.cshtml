@@ -1,0 +1,33 @@
+﻿@using CleverHiveDiary.Core.ViewModels.Farm;
+@model FarmViewModel
+
+@{
+    ViewBag.Title = "Твоята ферма!";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+
+<div class="text-center row">
+
+    <div class="card col-4" style="width: 20rem; ">
+        <img class="card-img-top" style="width: 18rem;"
+             src="https://1.bp.blogspot.com/-1KF2iF2wtHM/X-rAsKIo54I/AAAAAAAAGNE/NCoG1RCDK4sdXYT0ycP3uNLeDzbiEWGXwCLcBGAsYHQ/s600/Beekeeping.jpg" alt="Hive Image">
+        <div class="card-body">
+
+            <h5 class="card-title mt-1">@Model.Name</h5>
+            <p class="mb-0">Локация: @Model.Location</p>
+            <p class="mb-0">Капацитет: @Model.Capacity</p>
+        </div>
+
+        <a asp-area="" asp-controller="Farm" asp-action="Edit" asp-route-farmId="@Model.Id"
+           class="btn btn-info">Промени</a>
+        <a asp-area="" asp-controller="Hive" asp-action="All" asp-route-hiveId="@Model.Id"
+           class="btn btn-success">Към фермата</a>
+        <a asp-area="" asp-controller="Hive" asp-action="Add" asp-route-hiveId="@Model.Id"
+           class="btn btn-warning">Добави кошер</a>
+    </div>
+
+</div>
+
+

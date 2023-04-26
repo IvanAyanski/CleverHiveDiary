@@ -1,0 +1,33 @@
+﻿@using CleverHiveDiary.Areas.Admin.Models;
+@model ICollection<UsersViewModel>
+
+@{
+    ViewBag.Title = "Потребители";
+}
+
+<h1 class="text-center">Потребители</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Имейл</th>
+            <th>Ферма Id</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.Email</td>
+                    <td>@user.FarmId</td>
+                    <td>
+                         <a asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-userId="@user.Id"
+           class="btn btn-succes">Премахни</a>
+                    </td>
+                </tr>
+        }
+    </tbody>
+</table>
